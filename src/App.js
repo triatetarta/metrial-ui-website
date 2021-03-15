@@ -1,11 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, Grid } from '@material-ui/core';
 import Header from './components/Header';
+import Content from './components/Content';
+import Hero from './components/Hero';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
     backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/bg.jpg'})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -15,10 +16,24 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <>
       <CssBaseline />
-      <Header />
-    </div>
+      <Grid container direction='column' className={classes.root}>
+        <Grid item>
+          <Header />
+        </Grid>
+        <Grid item>
+          <Hero />
+        </Grid>
+        <Grid item container>
+          <Grid item xs={1} sm={2} />
+          <Grid item xs={10} sm={8}>
+            <Content />
+          </Grid>
+          <Grid item xs={1} sm={2} />
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
